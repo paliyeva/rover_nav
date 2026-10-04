@@ -1,12 +1,15 @@
-from rover import Rover
-from controller import navigate_to
 import math
+from rover import Rover, Camera
+from environment import Tag, Environment
+
+from controller import navigate_to
+from perception import detect_tag
 
 def main():
-    my_rover = Rover(0, 0, math.pi/2)
-    my_target = [10, 8]
-    navigate_to(my_rover, my_target, 0.1, 0) 
-
-
+    tag = Tag(0, 0)
+    env = Environment(tag)
+    camera = Camera(3, math.pi/2)
+    rover = Rover (3, 3, 3*math.pi/2, camera)
+    print(detect_tag(env, rover))
 if __name__ == "__main__":
     main()
